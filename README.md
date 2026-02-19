@@ -34,10 +34,13 @@ A modern, full-stack Support Ticket System built with the **MERN Stack** (MongoD
     ```
 
 2.  **Configure Environment**:
-    - The project comes with a root `.env` file. Ensure it contains your API Key:
+    - The project comes with a root `.env` file (or backend `.env`). Ensure it contains your API Key:
       ```env
       OPENAI_API_KEY=your_openai_api_key_here
+      PORT=5000
+      MONGO_URI=mongodb+srv://... (Connection string)
       ```
+    - The frontend connects to `http://localhost:5000` by default.
 
 3.  **Start the Application**:
     ```bash
@@ -93,7 +96,7 @@ SupportTicketSystem/
 ├── backend/                # Node.js/Express Server
 │   ├── config/             # DB Connection logic
 │   ├── controllers/        # Request handlers (Tickets, Stats)
-│   ├── models/             # Mongoose Schemas
+│   ├── models/             # Mongoose Schemas (Ticket.js)
 │   ├── routes/             # API Route definitions
 │   └── services/           # External services (OpenAI)
 ├── frontend/               # React Client
@@ -111,3 +114,17 @@ The repository includes a comprehensive set of functional features that can be t
 1.  **Submit a Ticket**: Type a description and watch the "Category" and "Priority" dropdowns auto-update.
 2.  **Check Stats**: Verify the dashboard counters increment immediately.
 3.  **Filter**: Use the search bar or dropdowns to slice the data.
+
+## 🚢 Deployment
+
+For detailed instructions on how to deploy this application to a production server (VPS/Cloud) using Docker, please refer to the [Deployment Guide](DEPLOYMENT.md).
+
+## 🛠 Troubleshooting
+
+**Issue: "Connection Refused" when accessing API**
+- Verify Docker containers are running: `docker ps`
+- Check if port 5000 is occupied by another process.
+
+**Issue: LLM not updating Category/Priority**
+- Check your `OPENAI_API_KEY` in `.env`.
+- Ensure you have internet access for external API calls.
